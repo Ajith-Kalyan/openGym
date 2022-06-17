@@ -106,16 +106,16 @@ class CustomEnv(gym.Env):
         head_y = self.snake_head[1]
 
         snake_length = len(self.snake_position)
-        apple_delta_x = head_x - self.apple_position[0]
-        apple_delta_y = head_y - self.apple_position[1]
+        apple_delta_x =  self.apple_position[0] - head_x
+        apple_delta_y =  self.apple_position[1] - head_y
 
 		# create observation:
-        self.observation = [head_x, head_y, apple_delta_x, apple_delta_y, 
+        observation = [head_x, head_y, apple_delta_x, apple_delta_y, 
         snake_length] + list(self.prev_actions)
-        self.observation = np.array(self.observation)
+        observation = np.array(self.observation)
 
         info = {}
-        return self.observation, self.reward, self.done, info
+        return observation, self.reward, self.done, info
 
 
     def reset(self):
@@ -134,8 +134,8 @@ class CustomEnv(gym.Env):
         head_x = self.snake_head[0]
         head_y = self.snake_head[1]
 
-        apple_delta_x = head_x - self.apple_position[0]
-        apple_delta_y = head_y - self.apple_position[1]
+        apple_delta_x =  self.apple_position[0] - head_x
+        apple_delta_y =  self.apple_position[1] - head_y
 
         snake_length = len(self.snake_position)
 
@@ -144,8 +144,8 @@ class CustomEnv(gym.Env):
             self.prev_actions.append(-1)
           
 		# create observation:
-        self.observation = [head_x, head_y, apple_delta_x, apple_delta_y, 
+        observation = [head_x, head_y, apple_delta_x, apple_delta_y, 
         snake_length] + list(self.prev_actions)
-        self.observation = np.array(self.observation)
+        observation = np.array(self.observation)
                
-        return self.observation  # reward, done, info can't be included
+        return observation  # reward, done, info can't be included
