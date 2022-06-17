@@ -2,8 +2,7 @@ import gym
 from stable_baselines3 import PPO
 import os
 
-MODEL_NAME = "PPO"
-models_dir = "models/{MODEL_NAME}"
+models_dir = "models/PPO"
 logdir = "logs"
 
 if not os.path.exists(models_dir):
@@ -13,15 +12,14 @@ if not os.path.exists(logdir):
 
 
 TIMESTEP = 10000
-MODEL_NAME = "PPO"
 
 env = gym.make("LunarLander-v2")
 env.reset()
 
 #Loading a saved model
-models_dir = "models/{MODEL_NAME}"
-model_path = f"{models_dir}/PPO__2__490000.zip"
-model = MODEL_NAME.load(model_path, env = env)
+models_dir = "models/PPO"
+model_path = f"{models_dir}/PPO__2__90000.zip"
+model = PPO.load(model_path, env = env)
 
 episodes = 10
 for ep in range(episodes):
